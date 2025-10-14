@@ -254,7 +254,7 @@ public class CoreManager
 
         var procService = new ProcessService(
             fileName: fileName,
-            arguments: string.Format(coreInfo.Arguments, coreInfo.AbsolutePath ? Utils.GetBinConfigPath(configPath).AppendQuotes() : configPath),
+            arguments: string.Format(coreInfo.Arguments, (coreInfo.CoreType is ECoreType.brook) ? System.IO.File.ReadAllText(Utils.GetBinConfigPath(configPath)) :(coreInfo.AbsolutePath ? Utils.GetBinConfigPath(configPath).AppendQuotes() : configPath)),
             workingDirectory: Utils.GetBinConfigPath(),
             displayLog: displayLog,
             redirectInput: false,
